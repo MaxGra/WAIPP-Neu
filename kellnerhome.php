@@ -39,10 +39,10 @@
             }
            if (isset($_GET['seite'])){
              if($_GET['seite'] == 'profil'){
-                 include('profil.php'); 
+                 include('kellnerprofil.php'); 
              }    
             if($_GET['seite'] == 'events') {
-                include('meineevents.php');
+                include('kellnerevents.php');
             }
             if($_GET['seite'] == 'neuesevent') {
                 include('neuesevent.php');
