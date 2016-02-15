@@ -69,11 +69,11 @@
                     return '<div class="alert alert-success" role="alert"><center>Ihr Event wurde erfolgreich erfolgreich erstellt!</center></div>';
                 }
 
-                static function registerEvent($star_date, $end_date, $name, $description) { 
+                static function registerEvent($star_date, $end_date, $name, $description, $target_dir, $target_name) { 
                    try {
                        $DB = NewADOConnection('mysql'); 
                        $DB->Connect('localhost','root','','usrdb_flhmnoco5');
-                       $rs = $DB->Execute("INSERT INTO events (star_date, end_date, name, description) VALUES ('$star_date', '$end_date', '$name', '$description')");
+                       $rs = $DB->Execute("INSERT INTO events (star_date, end_date, name, description, plan_picture_path, plan_picture_name) VALUES ('$star_date', '$end_date', '$name', '$description','$target_dir', '$target_name')");
                        $pk_event = $DB->Execute("SELECT (pk_event_id) FROM events ORDER BY pk_event_id DESC LIMIT 1;");
                        foreach($pk_event as $eventid){
                            
@@ -82,7 +82,7 @@
                        
                        $userid = $_SESSION['id'];
                        $rs1 = $DB->Execute("INSERT INTO users_events (pk_fk_user_id, pk_fk_event_id) VALUES (".$userid.", ".$id.")");
-                       
+                                                                     
                        echo $DB->ErrorMsg();
 
                        if ($pk_event && $rs && $rs1)
@@ -112,7 +112,7 @@
                         if (isset($_POST['erstelle_event'])){
                             
                         
-                        if (!(empty($_POST['inp_name'])) && !(empty($_POST['inp_description'])) && !(empty($_POST['star_date'])) && !(empty($_POST['end_date']))) {	
+                        if (!(empty($_POST['inp_name'])) && !(empty($_POST['inp_description'])) && !(empty($_POST['star_date'])) && !(empty($_POST['end_date']))) {
 
                                 $star_date = htmlspecialchars($_POST['star_date']);
                                 $end_date = htmlspecialchars($_POST['end_date']);
@@ -120,7 +120,8 @@
                                 $description = htmlspecialchars($_POST['inp_description']);
 
                                 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-
+                                $target_name = $_FILES["fileToUpload"]["name"];
+                            
                                 if ($_FILES["fileToUpload"]["size"] > 500000) {
                                     echo "Sorry, your file is too large.";
                                     $uploadOk = 0;
@@ -138,7 +139,7 @@
 
                             else {
 
-                                if (createEvent::registerEvent($star_date, $end_date, $name, $description)) {	
+                                if (createEvent::registerEvent($star_date, $end_date, $name, $description, $target_file, $target_name)) {	
                                         echo createEvent::outputEventSuccess();
                                 } else {
                                         $error = "Eventname already exists!";
