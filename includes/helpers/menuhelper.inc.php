@@ -81,9 +81,6 @@ font-size: 16px;">
                             </li>  	
                               <li >
                                 <a  id="meineevents_id" name="menu" href="index.php?seite=events" onclick="menuHighlight(1)"><i class="fa fa-table fa-3x"></i>Events</a>
-                            </li>
-                            <li  >
-                                <a  name="menu" href="index.php?seite=neuesevent"><i class="fa fa-edit fa-3x"></i>Neues Event </a>
                             </li>				
                              <li  >
                                 <a id="profile_id" name="menu" href="index.php?seite=profil"><i class="fa fa-bolt fa-3x"></i>Mein Profil</a>
