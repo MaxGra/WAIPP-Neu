@@ -72,6 +72,7 @@
                         $status = $_POST['inp_status'];
                         $update = $DB->Execute("UPDATE events set star_date = '$startdatum', end_date = '$enddatum', name = '$eventname', description = '$eventbeschreibung', status = '$status' WHERE  pk_event_id = $ID");
                         echo '<div class="alert alert-success" role="alert"><center>Sie haben Ihre Daten eroflgreich geändert!</center></div>';
+                        header("Location:".$_SERVER['REQUEST_URI']);  
                     } elseif($exp=='edit1') {
                         $image_name = $_FILES['inp_upload']['name'];
                         $image_type = $_FILES['inp_upload']['type'];
@@ -83,8 +84,8 @@
                         } else {
                             move_uploaded_file($image_tmp_name, "uploads/$image_name");
                             $updateProfilePicture = $DB->Execute("UPDATE events set event_picture_path = 'uploads/$image_name', event_picture_name = '$image_name' WHERE  pk_event_id = $ID");
-                            header("Location: eventdetail.php?id='$ID'");  
                             echo '<div class="alert alert-success" role="alert"><center>Sie haben Ihr Bild eroflgreich geändert!</center></div>';
+                            header("Location:".$_SERVER['REQUEST_URI']);  
                         }
                     } elseif($exp=='edit2') {
                         $image_name = $_FILES['inp_upload_2']['name'];
@@ -98,6 +99,7 @@
                             move_uploaded_file($image_tmp_name, "uploads/$image_name");
                             $updatePlan = $DB->Execute("UPDATE events set plan_picture_path = 'uploads/$image_name', plan_picture_name = '$image_name' WHERE  pk_event_id = $ID");
                             echo '<div class="alert alert-success" role="alert"><center>Sie haben Ihr Bild eroflgreich geändert!</center></div>';
+                            header("Location:".$_SERVER['REQUEST_URI']);  
                         }
                     }
     
