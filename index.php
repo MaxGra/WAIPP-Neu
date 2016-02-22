@@ -88,6 +88,9 @@
                      if($myrole == "kellner"){
                         include('kellnerhome.php');
                      }
+                     if($myrole == "kueche"){
+                        include('kuechehome.php');
+                     }
 				}
 				 else {
 				  $error = "Username or password wrong!";
@@ -104,12 +107,15 @@
 				
 				else {
 				$userisloggedin=true;
-                 if($_SESSION['role'] == "admin"){
+                 if($_SESSION['role'] == "admin") {
                         include('home.php');
-                     }
-                     if($_SESSION['role'] == "kellner"){
+                    }
+                    if($_SESSION['role'] == "kellner") {
                         include('kellnerhome.php');
-                     }
+                    }
+                    if($_SESSION['role'] == "kueche") {
+                        include('kuechehome.php');
+                    }
 				}
 				
 			   }

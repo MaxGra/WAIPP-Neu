@@ -26,8 +26,8 @@
     <div id="wrapper">
         
         <?php
-            echo menuHelper::outputHeader();
-            echo menuHelper::outputMenu();
+            echo menuHelper::outputKuecheHeader();
+            echo menuHelper::outputKuecheMenu();
         ?>
         
             
@@ -40,12 +40,9 @@
            if (isset($_GET['seite'])){
              if($_GET['seite'] == 'profil'){
                  include('profil.php'); 
-             }
+             }    
             if($_GET['seite'] == 'events') {
-                include('meineevents.php');
-            }
-            if($_GET['seite'] == 'neuesevent') {
-                include('neuesevent.php');
+                include('events_kueche.php');
             }
            }
             

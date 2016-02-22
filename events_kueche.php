@@ -27,7 +27,7 @@
                                             <i class="fa fa-bars"></i>
                                         </span>
                                         <div class="text-box" >
-                                            <a href="eventdetail.php?id='.$event['pk_event_id'].'">
+                                            <a href="bestellungen.php?id='.$event['pk_event_id'].'">
                                                 <p class="main-text">'.$event['name'].'</p>
                                             </a>
                                             <p class="text-muted">'.$event['description'].'</p>
@@ -44,27 +44,7 @@
                         </div>';
             }
         }
-
-        $exp = '';
-
-        if(isset($_GET['exp']))
-            $exp = $_GET['exp'];
-
-            if($exp=='del') {
-                $id = $_GET['id'];
-                $deleteQuery = $DB->Execute("DELETE FROM users_events WHERE pk_fk_event_id='$id'");
-                if($deleteQuery)
-                    echo $DB->ErrorMsg();
-                    echo "<meta http-equiv='refresh' content='0;url=index.php?seite=events'>";
-            }
-
-            if($exp=='edit') {
-                $id = $_GET['id'];
-                $editQuery = $DB->Execute("UPDATE events SET  users_events WHERE pk_fk_event_id='$id'");
-                if($deleteQuery)
-                    echo $DB->ErrorMsg();
-                    echo "<meta http-equiv='refresh' content='0;url=index.php?seite=events'>";
-            }
+    
     ?>
     
 </div>

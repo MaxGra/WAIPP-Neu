@@ -73,7 +73,7 @@
                    try {
                        $DB = NewADOConnection('mysql'); 
                        $DB->Connect('localhost','root','','usrdb_flhmnoco5');
-                       $rs = $DB->Execute("INSERT INTO events (star_date, end_date, name, description, plan_picture_path, plan_picture_name) VALUES ('$star_date', '$end_date', '$name', '$description','$target_dir', '$target_name')");
+                       $rs = $DB->Execute("INSERT INTO events (star_date, end_date, name, description, event_picture_path, event_picture_name, status) VALUES ('$star_date', '$end_date', '$name', '$description','$target_dir', '$target_name', 'geplant')");
                        $pk_event = $DB->Execute("SELECT (pk_event_id) FROM events ORDER BY pk_event_id DESC LIMIT 1;");
                        foreach($pk_event as $eventid){
                            
@@ -102,7 +102,7 @@
                 <?php 
                     $error = "";
                     $userisregistered = false;
-                    $target_dir = "pictures/";
+                    $target_dir = "uploads/";
                     $uploadOk = 1;
                 
                 
