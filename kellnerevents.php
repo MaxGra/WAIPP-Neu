@@ -27,44 +27,20 @@
                                             <i class="fa fa-bars"></i>
                                         </span>
                                         <div class="text-box" >
-                                            <a href="eventdetail.php?id='.$event['pk_event_id'].'">
+                                            <a href="kellnereventdetail.php?id='.$event['pk_event_id'].'">
                                                 <p class="main-text">'.$event['name'].'</p>
                                             </a>
                                             <p class="text-muted">'.$event['description'].'</p>
                                             <p class="text-muted">'.$event['star_date'].' bis '.$event['end_date'].'</p>
                                         </div>
-                                        <a href="index.php?seite=events&exp=del&id='.$event['pk_event_id'].'">
-                                            <div class="div_icons_right"><i class="fa fa-trash-o fa-2x"></i></div>
-                                        </a>
                                         <div class="event_status">
-                                            Status: '.$event['status'].'
+                                            Status: abgeschlossen
                                         </div>
                                     </div>
                             </div>
                         </div>';
             }
         }
-
-        $exp = '';
-
-        if(isset($_GET['exp']))
-            $exp = $_GET['exp'];
-
-            if($exp=='del') {
-                $id = $_GET['id'];
-                $deleteQuery = $DB->Execute("DELETE FROM users_events WHERE pk_fk_event_id='$id'");
-                if($deleteQuery)
-                    echo $DB->ErrorMsg();
-                    echo "<meta http-equiv='refresh' content='0;url=index.php?seite=events'>";
-            }
-
-            if($exp=='edit') {
-                $id = $_GET['id'];
-                $editQuery = $DB->Execute("UPDATE events SET  users_events WHERE pk_fk_event_id='$id'");
-                if($deleteQuery)
-                    echo $DB->ErrorMsg();
-                    echo "<meta http-equiv='refresh' content='0;url=index.php?seite=events'>";
-            }
     ?>
     
 </div>
