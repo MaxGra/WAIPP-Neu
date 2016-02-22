@@ -44,10 +44,10 @@
                     <p class="main-text">Laufende Events</p>
                     <p class="text-muted">
                         <?php
-                            $running_events = $DB -> Execute("SELECT COUNT( pk_event_id ) AS nummer, Status
+                            $running_events = $DB -> Execute("SELECT COUNT( pk_event_id ) AS nummer, status
 FROM EVENTS INNER JOIN users_events ON events.pk_event_id = users_events.pk_fk_event_id
 INNER JOIN users ON users.pk_user_id = users_events.pk_fk_user_id
-WHERE pk_user_id =".$userID." AND events.Status='running'");
+WHERE pk_user_id =".$userID." AND events.status='running'");
                             echo "Sie haben derzeit ";
                             foreach ($running_events as $ev_count){
                                 echo $ev_count['nummer'];
@@ -67,10 +67,10 @@ WHERE pk_user_id =".$userID." AND events.Status='running'");
                     <p class="main-text">Geplante Events</p>
                     <p class="text-muted">
                         <?php
-                            $running_events = $DB -> Execute("SELECT COUNT( pk_event_id ) AS nummer, Status
+                            $running_events = $DB -> Execute("SELECT COUNT( pk_event_id ) AS nummer, status
 FROM EVENTS INNER JOIN users_events ON events.pk_event_id = users_events.pk_fk_event_id
 INNER JOIN users ON users.pk_user_id = users_events.pk_fk_user_id
-WHERE pk_user_id =".$userID." AND events.Status='planned'");
+WHERE pk_user_id =".$userID." AND events.status='planned'");
                             echo "Sie haben derzeit ";
                             foreach ($running_events as $ev_count){
                                 echo $ev_count['nummer'];
@@ -90,10 +90,10 @@ WHERE pk_user_id =".$userID." AND events.Status='planned'");
                     <p class="main-text">Abgeschlossene Events</p>
                     <p class="text-muted">
                         <?php
-                            $running_events = $DB -> Execute("SELECT COUNT( pk_event_id ) AS nummer, Status
+                            $running_events = $DB -> Execute("SELECT COUNT( pk_event_id ) AS nummer, status
 FROM EVENTS INNER JOIN users_events ON events.pk_event_id = users_events.pk_fk_event_id
 INNER JOIN users ON users.pk_user_id = users_events.pk_fk_user_id
-WHERE pk_user_id =".$userID." AND events.Status='done'");
+WHERE pk_user_id =".$userID." AND events.status='done'");
                             echo "Sie haben derzeit ";
                             foreach ($running_events as $ev_count){
                                 echo $ev_count['nummer'];
