@@ -52,7 +52,20 @@
                                                             <label>Tische</label>
                                                             <input type="number" min="0" class="form-control" />
                                                         </div>-->
-                                                        <button type="submit" class="btn btn-default" name="erstelle_event">Erstellen</button>
+                                                        <div class="product_row">
+                                                        <div class="row">
+                                                            <div class="form-group col-xs-4">
+                                                                <input type="text" class="form-control product_name_0" placeholder="Name" />
+                                                            </div>
+                                                            <div class="form-group col-xs-4">
+                                                                <input type="number" min="0" class="form-control product_preis_0" placeholder="Preis" />
+                                                            </div>
+                                                            <div class="form-group col-xs-4">
+                                                                <button type="button" class="btn btn-success product_button">Produkt Hinzufügen</button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-success create_procejt_button" name="erstelle_event">Erstellen</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -113,7 +126,7 @@
                             
                         
                         if (!(empty($_POST['inp_name'])) && !(empty($_POST['inp_description'])) && !(empty($_POST['star_date'])) && !(empty($_POST['end_date']))) {
-
+                                $validation = true;
                                 $star_date = htmlspecialchars($_POST['star_date']);
                                 $end_date = htmlspecialchars($_POST['end_date']);
                                 $name = htmlspecialchars($_POST['inp_name']);
@@ -158,3 +171,22 @@
                 ?>
             </section>
     </div>
+<script>
+    var anz = 1;
+    
+    $('.product_button').click(function(){
+       $('.product_row').append("<div class='row'><div class='form-group col-xs-4'><input type='text' class='form-control product_name_"+anz+"' placeholder='Name' /></div><div class='form-group col-xs-4'><input type='number' min='0' class='form-control product_preis_"+anz+"' placeholder='Preis' /></div></div>");
+        anz++;
+    });
+    
+    $('.create_procejt_button').click(function(){
+        for(var i; i < anz+1; i++){ 
+         <?php
+           echo "hello";
+            if($validation = true){
+                echo "ja";
+            }
+         ?>
+       } 
+    });
+</script>
