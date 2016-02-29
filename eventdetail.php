@@ -139,9 +139,9 @@
                                                         <div class="form-group input-group">
                                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                                             <select class="form-control" name="inp_status" id="inp_status_id" value="'.$eventDetail['status'].'">
-                                                                <option'; if ($eventDetail['status'] === 'geplant') echo ' selected="selected"'; echo '>geplant</option>
-                                                                <option'; if ($eventDetail['status'] === 'in Bearbeitung') echo ' selected="selected"'; echo '>in Bearbeitung</option>
-                                                                <option'; if ($eventDetail['status'] === 'abgeschlossen') echo ' selected="selected"'; echo'>abgeschlossen</option>
+                                                                <option'; if ($eventDetail['status'] === 'planned') echo ' selected="selected"'; echo '>planned</option>
+                                                                <option'; if ($eventDetail['status'] === 'running') echo ' selected="selected"'; echo '>running</option>
+                                                                <option'; if ($eventDetail['status'] === 'done') echo ' selected="selected"'; echo'>done</option>
                                                             </select>
                                                         </div>
                                                         
