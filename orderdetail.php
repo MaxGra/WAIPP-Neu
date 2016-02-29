@@ -62,7 +62,18 @@
 
                     foreach ($titeln as $titel) {
                         echo '<h1>'.$titel['name'].'</h1>';
+                        echo '<form role="form" method="post">
+                        <button type="submit" name="bestellung_stornieren">Stornieren</button>
+                        </form>';
+                        
+                        if (isset($_POST['bestellung_stornieren'])){
+                            $DB->Execute("DELETE FROM orders_products WHERE pk_fk_order_id=".$ID."");
+                            $DB->Execute("DELETE FROM orders WHERE pk_order_id=".$ID."");
+                            echo "Bestellung wurde erfolgreich gelöscht";
+                        }
                     }
+                
+                    
 
                     echo '<table class="table table-striped table-bordered table-hover">
                                     <thead>
