@@ -58,6 +58,7 @@
                     $ID = $_GET['id'];
                     $events = $DB->Execute("SELECT * FROM events where pk_event_id=$ID");
                     $bestellungen = $DB->Execute("SELECT * FROM orders where fk_event_id=$ID");
+                    $moegliche_kellner = $DB->Execute("SELECT * FROM users where role='kellner'");
                 
                     $exp="";
                 
@@ -182,6 +183,25 @@
                                             
                                         </div>
                                         </div>';
+                        
+                                        echo '<p>Kellner hinzufügen</p>';
+                                        foreach ($moegliche_kellner as $kellner) {
+                                            echo '<table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>Vorname</th>
+                                                                <th>Nachname</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>'.$kellner['pk_user_id'].'</td>
+                                                                <td>'.$kellner['firstname'].'</td>
+                                                                <td>'.$kellner['lastname'].'</td>
+                                                            </tr>
+                                                  </table>';
+                                        }
                                         
                                         foreach ($bestellungen as $bestellung) {
                                                 if ($bestellung != '') {
