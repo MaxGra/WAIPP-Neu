@@ -95,6 +95,8 @@
                        
                        $userid = $_SESSION['id'];
                        $rs1 = $DB->Execute("INSERT INTO users_events (pk_fk_user_id, pk_fk_event_id) VALUES (".$userid.", ".$id.")");
+                       
+                       
                                                                      
                        echo $DB->ErrorMsg();
 
@@ -181,12 +183,7 @@
     
     $('.create_procejt_button').click(function(){
         for(var i; i < anz+1; i++){ 
-         <?php
-           echo "hello";
-            if($validation = true){
-                echo "ja";
-            }
-         ?>
+         <?php if($validation = true){echo "ja";}?>
        } 
     });
 </script>
