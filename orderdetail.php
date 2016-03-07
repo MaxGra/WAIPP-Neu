@@ -59,20 +59,23 @@
                     $ID = $_GET['id'];
                     $bestellDetails = $DB->Execute("SELECT * FROM orders_products where pk_fk_order_id=$ID");
                     $titeln = $DB->Execute("SELECT * FROM orders where pk_order_id=$ID");
+                    $anz = 1;
 
                     foreach ($titeln as $titel) {
                         echo '<h1>'.$titel['name'].'</h1>';
                         echo '<form role="form" method="post">
                         <button type="submit" name="bestellung_stornieren">Stornieren</button>
                         </form>';
+                        $anz++;
                         
                         if (isset($_POST['bestellung_stornieren'])){
                             $DB->Execute("DELETE FROM orders_products WHERE pk_fk_order_id=".$ID."");
                             $DB->Execute("DELETE FROM orders WHERE pk_order_id=".$ID."");
                             echo "Bestellung wurde erfolgreich gelöscht";
                         }
+                        
+                        
                     }
-                
                     
 
                     echo '<table class="table table-striped table-bordered table-hover">
@@ -87,7 +90,7 @@
                                     <tbody>';
 
                     $gesamtpreis = 0;
-
+                    $anz = 1;
                     foreach ($bestellDetails as $bestellDetail) {
                         $produktID = $bestellDetail['pk_fk_product_id'];
                         $amount = $bestellDetail['amount'];
@@ -101,8 +104,18 @@
                             echo '<td>';
                             $gesamtpreisprodukt = $preis*$amount;
                             $gesamtpreis += $gesamtpreisprodukt;
-                            echo $gesamtpreisprodukt;
+                            echo $gesamtpreisprodukt.'<form role="form" method="post">
+                        <button type="submit" name="produkt_stornieren_'.$anz.'">Produkt löschen</button>
+                        </form>';
                             echo '</td></tr>';
+                            
+                           if(isset($_POST["produkt_stornieren_".$anz.""])){
+                                echo $bestellDetail["pk_fk_product_id"];
+                                $DB->Execute("DELETE FROM `usrdb_flhmnoco5`.`orders_products` WHERE `orders_products`.`pk_fk_product_id` = ".$bestellDetail["pk_fk_product_id"]." AND `orders_products`.`pk_fk_order_id` = ".$ID."");
+                                echo "Produkt wurde erfolgreich gelöscht";
+                                header("Refresh:0");
+                            } 
+                            $anz++;
                         }
                     }
                     echo '</tbody>
