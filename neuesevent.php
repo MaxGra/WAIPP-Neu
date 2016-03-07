@@ -92,6 +92,8 @@
                                     </div>
                                 </div>';
                   }
+                    
+                    //ttt
 
                 static function outputEventError($err) {			
                     return '<div class="alert alert-danger" role="alert"><center>'.$err.'</center></div>';	
