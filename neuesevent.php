@@ -1,7 +1,7 @@
 
             <div id="page-inner">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-15">
                         <h2>Neues Event erstellen</h2>
                     </div>
                 </div>
@@ -54,16 +54,35 @@
                                                         </div>-->
                                                         <div class="product_row">
                                                         <div class="row">
-                                                            <div class="form-group col-xs-4">
+                                                         
+                                                            <div class="form-group col-xs-3">
+                                                                <select class="form-control product_type_0" name="product_type">
+                                                                
+                                                                <option value="Getränk">Getränk</option>
+                                                                <option value="Speise">Speise</option>
+
+                                                                </select>
+                                                            </div>
+                                                         
+                                                         <div class="form-group col-xs-3">
                                                                 <input type="text" class="form-control product_name_0" placeholder="Name" />
                                                             </div>
-                                                            <div class="form-group col-xs-4">
+                                                            <div class="form-group col-xs-3">
                                                                 <input type="number" min="0" class="form-control product_preis_0" placeholder="Preis" />
                                                             </div>
-                                                            <div class="form-group col-xs-4">
-                                                                <button type="button" class="btn btn-success product_button">Produkt Hinzufügen</button>
+                                                            
+                                                                <div class="form-group col-xs-3">
+                                                                <select class="form-control product_amout_0" name="product_type">
+                                                                
+                                                                <option value="0.5l">0,5l</option>
+                                                                <option value="0.33l">0,33l</option>
+
+                                                                </select>
                                                             </div>
                                                         </div>
+                                                                   <div class="form-group">
+                                                                <button type="button" class="btn btn-success product_button">Speise Hinzufügen</button>
+                                                            </div>
                                                         </div>
                                                         <button type="submit" class="btn btn-success create_procejt_button" name="erstelle_event">Erstellen</button>
                                                     </form>
@@ -175,7 +194,7 @@
     var anz = 1;
     
     $('.product_button').click(function(){
-       $('.product_row').append("<div class='row'><div class='form-group col-xs-4'><input type='text' class='form-control product_name_"+anz+"' placeholder='Name' /></div><div class='form-group col-xs-4'><input type='number' min='0' class='form-control product_preis_"+anz+"' placeholder='Preis' /></div></div>");
+       $('.product_row').append("<div class='row'><div class='form-group col-xs-3'><select class='form-control product_type_0' name='product_type'><option value='Getränk'>Getränk</option><option value='Speise'>Speise</option></select></div><div class='form-group col-xs-3'><input type='text' class='form-control product_name_"+anz+"' placeholder='Name' /></div><div class='form-group col-xs-3'><input type='text' class='form-control product_preis_"+anz+"' placeholder='Preis' /></div><div class='form-group col-xs-2'><select class='form-control product_amout_0' name='product_type'><option value='0.5l'>0,5l</option><option value='0.33l'>0,33l</option></select></div><div class='form-group col-xs-1'><button type='button' class='btn btn-danger'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button><br/></div><br/><div class='from-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >A</div><div class='from-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >B</div><div class='from-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >C</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >D</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >E</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >F</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >G</div></div><div class='row'><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >H</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >L</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >M</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >N</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >O</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >P</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >R</div></div>");
         anz++;
     });
     
