@@ -1,0 +1,11 @@
+$a= $_POST["productname"];
+$b= $_POST["productpreis"]
+
+for ($i=0;i++;$i<
+
+
+
+ $a = $_POST["product_type"];
+                                $b = $_POST["product_name"];
+                                $c = $_POST["product_preis"];
+                                $d = $_POST["product_amount"];
