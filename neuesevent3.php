@@ -1,7 +1,7 @@
 
             <div id="page-inner">
                 <div class="row">
-                    <div class="col-md-15">
+                    <div class="col-md-12">
                         <h2>Neues Event erstellen</h2>
                     </div>
                 </div>
@@ -11,11 +11,8 @@
             <?php
                 require('includes/adodb/adodb.inc.php'); 
                 
-                
 
                 class createEvent {
-                    
-                  public $id;    
                   static function outputRegisterForm() {
                       return '<div class="row">
                                 <div class="col-md-12">
@@ -56,10 +53,17 @@
                                                             <input type="number" min="0" class="form-control" />
                                                         </div>-->
                                                         <div class="product_row">
-                                                    
-                                                                   <div class="form-group">
-                                                                <button type="button" class="btn btn-success product_button">Speise Hinzufügen</button>
+                                                        <div class="row">
+                                                            <div class="form-group col-xs-4">
+                                                                <input type="text" class="form-control" name="product_name_0" placeholder="Name" />
                                                             </div>
+                                                            <div class="form-group col-xs-4">
+                                                                <input type="number" min="0" class="form-control" name="product_preis_0" placeholder="Preis" />
+                                                            </div>
+                                                            <div class="form-group col-xs-4">
+                                                                <button type="button" class="btn btn-success" name="product_button">Produkt Hinzufügen</button>
+                                                            </div>
+                                                        </div>
                                                         </div>
                                                         <button type="submit" class="btn btn-success create_procejt_button" name="erstelle_event">Erstellen</button>
                                                     </form>
@@ -69,8 +73,6 @@
                                     </div>
                                 </div>';
                   }
-                    
-                    //tttest
 
                 static function outputEventError($err) {			
                     return '<div class="alert alert-danger" role="alert"><center>'.$err.'</center></div>';	
@@ -89,30 +91,12 @@
                        foreach($pk_event as $eventid){
                            
                            $id= intval($eventid['pk_event_id']);
-                           
                        }
                        
                        $userid = $_SESSION['id'];
                        $rs1 = $DB->Execute("INSERT INTO users_events (pk_fk_user_id, pk_fk_event_id) VALUES (".$userid.", ".$id.")");
                        
-                       $a = $_POST["product_type"];
-                        $b = $_POST["product_name"];
-                        $c = $_POST["product_preis"];
-                        $d = $_POST["product_amount"];
-
-                        for($i = 0; $i<sizeof($a);$i++){                
-                            $DB->Execute("INSERT INTO products (pk_product_id, description, price, amount) VALUES ('NULL','$b[$i]', '$c[$i]', '$d[$i]')");
-                            $pk_product_id = $DB->Execute("SELECT (pk_product_id) FROM products ORDER BY pk_product_id DESC LIMIT 1;");
-                            foreach($pk_product_id as $pkId){
-
-                               $id2= intval($pkId['pk_product_id']);
-                            }
-
-                            $str= "INSERT INTO events_products (pk_fk_event_id, pk_fk_product_id) VALUES ('".$id."','".$id2."')";
-                            $DB->Execute($str);
-
-
-                        }
+                       
                                                                      
                        echo $DB->ErrorMsg();
 
@@ -160,13 +144,21 @@
                                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                                         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
                                     } else {
-                                        echo "Es wurde kein File hochgeladen. ";
+                                        echo "Sorry, there was an error uploading your file.";
+                                    }
+                                }
+                            
+                                foreach($_POST as $key => $value){
+                                    if(substr($key, 0, strlen($key)-2) == "product_name" || substr($key, 0, strlen($key)-2) == "product_preis"){
+                                        echo $key . " = > ". $value;
                                     }
                                 }
 
                                 if (strlen($name) > 30) {
                                     $error = "Eventname ist zu lang!";
-                                } else {
+                                }
+
+                            else {
 
                                 if (createEvent::registerEvent($star_date, $end_date, $name, $description, $target_file, $target_name)) {	
                                         echo createEvent::outputEventSuccess();
@@ -191,7 +183,7 @@
     var anz = 1;
     
     $('.product_button').click(function(){
-       $('.product_row').append("<div class='row'><div class='form-group col-xs-3'><select class='form-control' name='product_type[]'><option value='Getränk'>Getränk</option><option value='Speise'>Speise</option></select></div><div class='form-group col-xs-3'><input type='text' class='form-control' name='product_name[]' placeholder='Name' /></div><div class='form-group col-xs-3'><input type='text' class='form-control' name='product_preis[]' placeholder='Preis' /></div><div class='form-group col-xs-2'><select class='form-control product_amout_0' name='product_amount[]'><option value='0.5l'>0,5l</option><option value='0.33l'>0,33l</option></select></div><div class='form-group col-xs-1'><button type='button' class='btn btn-danger'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button><br/></div><br/><div class='from-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >A</div><div class='from-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >B</div><div class='from-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >C</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >D</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >E</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >F</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >G</div></div><div class='row'><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >H</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >L</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >M</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >N</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >O</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >P</div><div class='form-group col-xs-1'><input type='checkbox' name='vehicle' value='Car'  >R</div></div>");
+       $('.product_row').append("<div class='row'><div class='form-group col-xs-4'><input type='text' class='form-control'  name='product_name_"+anz+"' placeholder='Name' /></div><div class='form-group col-xs-4'><input type='number' min='0' class='form-control' name='product_preis_"+anz+"' placeholder='Preis' /></div></div>");
         anz++;
     });
     
